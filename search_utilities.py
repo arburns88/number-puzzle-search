@@ -11,18 +11,16 @@ Moves = { # directions to try moving and their move values
 }
 
 def find_blank(state): # returns the location of the 0
-    rows = range(len(state))
-    columns = range(len(state[row]))
-    for row in rows: # for every row (lists in state)
-        for coloumn in columns: # for every column in curr row (list of list in state)
+    for row in range(len(state)): # for every row (lists in state)
+        for column in range(len(state[row])): # for every column in curr row (list of list in state)
             if state[row][column] == 0:
                 return (row, column)
 
 
 def swap(state, p1, p2): # swaps tiles p1 and p2 (moving empty tile)
     new_state = copy.deepcopy(state) # required to make new_state a new distinct copy
-    r1, c1 = pos1
-    r2, c2 = pos2
+    r1, c1 = p1
+    r2, c2 = p2
     new_state[r1][c1], new_state[r2][c2] = new_state[r2][c2], new_state[r1][c1]
     return new_state
 
@@ -32,11 +30,11 @@ def get_successors(node): # create nodes based on new successor states for curre
     size = len(node.state)
     empty = find_blank(node.state)
     empty_row, empty_column = empty
-    for move, (dr, dc) in moves.items(): # for all possible move directions
-        target_row, target_col = empty_row + dr, empty_col + dc # set target position
+    for move, (dr, dc) in Moves.items(): # for all possible move directions
+        target_row, target_col = empty_row + dr, empty_column + dc # set target position
 
         if 0 <= target_row < size and 0 <= target_col < size: # if target positions are valid in lists
-            new_state = swap(node.state, blank_pos, (target_row, target_col))
+            new_state = swap(node.state, empty, (target_row, target_col))
 
             if node.parent is None or new_state != node.parent.state: # if new state isnt its grandparents state (i.e. != move right then move left (inverse of parents move))
                 child = Node(new_state, node, move, node.depth + 1)
