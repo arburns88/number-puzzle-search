@@ -14,13 +14,15 @@ All three use **tree search**: there is no general visited-set — the only excl
 
 States are 4x4 grids given as a vector of 4 vectors, with `0` as the blank:
 [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 0]]
+
 ## Usage
 
 ```bash
-python puzzle_solver.py
+python main.py
 ```
 
 The program prompts for:
+
 1. Start state
 2. Goal state
 3. Algorithm — `(1)` BFS, `(2)` IDS, `(3)` BFS and IDS, `(4)` DLS
