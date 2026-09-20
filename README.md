@@ -17,7 +17,7 @@ States are 4x4 grids given as a vector of 4 vectors, with `0` as the blank:
 ## Usage
 
 ```bash
-python puzzle_solver.py
+python main.py
 ```
 
 The program prompts for:
